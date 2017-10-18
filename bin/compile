@@ -137,10 +137,11 @@ EOF
 
 ########## heroku toolbelt ##############################################
 
-speak "Installing heroku toolbelt"
+speak "Installing heroku CLI"
 
 VENDOR_DIR="vendor"
-DOWNLOAD_URL="http://assets.heroku.com.s3.amazonaws.com/heroku-client/heroku-client.tgz"
+
+DOWNLOAD_URL="https://cli-assets.heroku.com/heroku-cli/channels/stable/heroku-cli-linux-x64.tar.gz"
 
 speak "DOWNLOAD_URL = " $DOWNLOAD_URL
 
@@ -148,10 +149,12 @@ cd $BUILD_DIR
 mkdir -p $VENDOR_DIR
 cd $VENDOR_DIR
 curl -L --silent $DOWNLOAD_URL | tar xz
+mv heroku-cli-v6.* heroku-client
 
 speak "exporting PATH"
 PROFILE_PATH="$BUILD_DIR/.profile.d/heroku-client.sh"
 mkdir -p $(dirname $PROFILE_PATH)
+
 speak 'export PATH="$PATH:vendor/heroku-client/bin"' >> $PROFILE_PATH
 
 ########## project build ###########################################
